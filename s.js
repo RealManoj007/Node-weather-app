@@ -4,6 +4,7 @@ const hbs=require('hbs');
 const app=express();
 const geocode=require("./src/geocode");
 const forcast=require("./src/forcast");
+const port=process.env.PORT || 3000;
 
 app.set('view engine','hbs');
 app.set('views','./views')
@@ -41,6 +42,6 @@ app.get('/weather',(req,res)=>{
 })
 
 
-app.listen(3000,()=>{
-    console.log(`Port is redriected to port 3000`);
+app.listen(port,()=>{
+    console.log(`Port is redriected to port ${port}`);
 })
