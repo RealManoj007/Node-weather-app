@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <style>
+        p{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body style="margin: auto;width:600px;">
+    <h1 style="margin-top: 15%; margin-bottom:30px">Check your weather Here:</h1>
+    <form style="margin: auto;width:440px;">
+        <input type="text" id="i1" class="i1" placeholder="Enter location"/><br/><br/>
+        <button type="button" style="margin-left: 70px;" onclick="fun();">Search</button>
+    </form>
+     <p id="m0" style="margin-top: 70px;"></p><br>
+    <span> Location= </span>  <p id="m1"></p><br>
+    <span>Main= </span><p id="m2"></p><br>
+    <span>Description= </span><p id="m3"></p><br>
+    <span>Country= </span> <p id="m4"></p><br>
+    <span>Forecast= </span> <p id="m5"></p><br>
+    <script>
+        console.log("Welcome to Index");
+        
+        function fun(){
+            
+            console.log("E")
+            var loc=document.getElementById('i1').value;
+            console.log(loc);
+            document.getElementById('m1').innerHTML="Loading....";
+            var loc1=document.getElementById('m1');
+            var loc2=document.getElementById('m2');
+            var loc3=document.getElementById('m3');
+            var loc4=document.getElementById('m4');
+            var loc5=document.getElementById('m5');
+            
+
+            fetch(`http://localhost:3000/weather?location=${loc}`).then((resp)=>{
+                resp.json().then((data)=>{
+                   if(data.error){
+                        loc1.innerHTML=data.error;    
+                    }else{
+                        loc1.innerHTML=data.location;
+                        loc2.innerHTML=data.main;
+                        loc3.innerHTML=data.description;
+                        loc4.innerHTML=data.country;
+                        loc5.innerHTML=data.forcast;
+                    } 
+                    
+                })
+            })
+            preventDefault();
+        }
+    </script>
+</body>
+</html>
