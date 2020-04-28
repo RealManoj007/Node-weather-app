@@ -25,7 +25,6 @@ app.get('/weather',(req,res)=>{
             return res.send({error})
         }
         forcast(url,(error,cb1)=>{
-            console.log(error);
             if(error){
                 return res.send({error})
             }else{
@@ -43,5 +42,5 @@ app.get('/weather',(req,res)=>{
 
 
 app.listen(3000,()=>{
-    console.log("Port is redriected to port 3000");
+    console.log(`Port is redriected to port 3000`);
 })
